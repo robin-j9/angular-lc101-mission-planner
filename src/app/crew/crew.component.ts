@@ -9,6 +9,8 @@ export class CrewComponent implements OnInit {
 
   inCrew: boolean = false;
   crew: object[] = [];
+  mouseover: boolean = false;
+  mousedOverMember: object;
 
   candidates: object[] = [
     {name: "Sally Ride", photo: 'https://handlers.education.launchcode.org/static/images/sally-ride.jpg'},
@@ -26,11 +28,17 @@ export class CrewComponent implements OnInit {
 
   // Code the 'addCrewMember' function here:
   addCrewMember(candidate: object) {
-    if (this.crew.length < 3 && !this.crew.includes(candidate)) {
+    this.inCrew = this.crew.includes(candidate);
+    if (this.crew.length < 3 && !this.inCrew) {
       this.crew.push(candidate);
-    } else if (this.crew.includes(candidate)) {
+    } else if (this.inCrew) {
       let index = this.crew.indexOf(candidate);
       this.crew.splice(index, 1);
     }
+  }
+
+  mouseoverCrewMember(member: object) {
+    this.mouseover = !this.mouseover;
+    this.mousedOverMember = member;
   }
 }
