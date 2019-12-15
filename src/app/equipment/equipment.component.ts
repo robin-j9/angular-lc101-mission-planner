@@ -22,6 +22,7 @@ export class EquipmentComponent implements OnInit {
    maximumAllowedMass: number = 2000;
    maxItems: number = 10;
    massBudgetRemainingUnder200: boolean = false;
+   buttonOff: boolean = false;
 
    constructor() { }
 
@@ -42,5 +43,11 @@ export class EquipmentComponent implements OnInit {
    disableButton(item: object) {
     return this.cargoHold.length === this.maxItems ||
            this.cargoMass + item['mass'] > this.maximumAllowedMass; 
+   }
+
+   emptyHold() {
+    this.cargoHold = [];
+    this.cargoMass = 0;
+    this.massBudgetRemainingUnder200 = false;
    }
 }
